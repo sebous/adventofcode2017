@@ -6,6 +6,12 @@
 [![CI](https://github.com/fspoettel/advent-of-code-rust/actions/workflows/ci.yml/badge.svg)](https://github.com/fspoettel/advent-of-code-rust/actions/workflows/ci.yml)
 
 <!--- advent_readme_stars table --->
+## 2017 Results
+
+| Day | Part 1 | Part 2 |
+| :---: | :---: | :---: |
+| [Day 1](https://adventofcode.com/2017/day/1) | ⭐ | ⭐ |
+<!--- advent_readme_stars table --->
 
 ---
 
