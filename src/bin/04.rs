@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 use itertools::Itertools;
 
@@ -7,7 +7,7 @@ pub fn part_one(input: &str) -> u32 {
         .lines()
         .map(|line| {
             let mut uniq = HashSet::new();
-            line.split_whitespace().all(|bytes| uniq.insert(bytes))
+            line.split_whitespace().all(|word| uniq.insert(word))
         })
         .filter(|x| *x)
         .count() as u32
@@ -17,19 +17,16 @@ pub fn part_two(input: &str) -> u32 {
     input
         .lines()
         .filter(|line| {
-            let mut uniq = HashSet::new();
-            let words_b = line.split_whitespace();
-
-            for word_b in words_b {
-                let char_permutations = word_b.chars().permutations(word_b.len()).unique();
-                for char_perm in char_permutations {
-                    let is_uniq = uniq.insert(char_perm);
-                    if !is_uniq {
-                        return false;
+            line.split_whitespace()
+                .map(|w| {
+                    let mut map = HashMap::new();
+                    for b in w.as_bytes() {
+                        *map.entry(b).or_insert(0) += 1;
                     }
-                }
-            }
-            true
+                    map
+                })
+                .permutations(2)
+                .all(|pair| pair[0] != pair[1])
         })
         .count() as u32
 }
